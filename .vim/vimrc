@@ -1,0 +1,13 @@
+if exists('g:vscode')
+    " for vscode-neovim
+    " https://github.com/asvetliakov/vscode-neovim
+    runtime! vscode.vim
+else
+    " for vim/neovim
+    runtime! config/00-settings.vim
+    runtime! config/01-plugins.vim
+    runtime! config/02-mappings.vim
+    runtime! config/03-plugin-settings.vim
+    runtime! config/05-colorscheme.vim
+    runtime! languages/*.vim
+endif

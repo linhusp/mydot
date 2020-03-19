@@ -1,0 +1,5 @@
+# session nl
+new -s nl -n "đậu xanh"
+neww -n "thập cẩm"
+neww -n "trôi nước"
+selectw -t 0

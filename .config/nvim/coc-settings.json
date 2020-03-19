@@ -1,0 +1,48 @@
+{
+    // "suggest.enablePreview": false,
+    // "highlight.document.enable": false,
+    "suggest.noselect": true,
+    "signature.floatMaxWidth": 50,
+    "coc.preferences.hoverTarget": "float",
+    "python.envFile": "${workspaceFolder}/",
+    "python.jediEnabled": true,
+    "python.analysis.diagnosticEnabled": false,
+    "python.formatting.autopep8Args": [
+        "--ignore=E731"
+    ],
+    "python.linting.pylintArgs": [
+        "--errors-only"
+    ],
+    "python.linting.enabled": false,
+    // "python.terminal.activateEnvironment": true,
+    "emmet.includeLanguages": {
+        "vue-html" :"html", 
+        "javascript": "javascriptreact"
+    },
+    "emmet.excludeLanguages": [
+        "python",
+        "markdown"
+    ],
+    "languageserver": {
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": [
+                "go.mod",
+                ".vim/",
+                ".git/",
+                ".hg/"
+            ],
+            "filetypes": [
+                "go"
+            ],
+            "initializationOptions": {
+                "usePlaceholders": true
+            }
+        }
+    },
+    "go.enable": false,
+    // "go.goplsPath": "$GOBIN/gopls",
+    // "go.goplsOptions": {
+    //     "deepCompletion": true
+    // },
+}
