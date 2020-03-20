@@ -21,7 +21,7 @@ builtin . /usr/share/io.elementary.terminal/enable-zsh-completion-notifications 
 export TERM="xterm-256color"
 
 # Path to oh-my-zsh
-export ZSH=/home/linh/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set theme
 ZSH_THEME="powerlevel10k/powerlevel10k"
