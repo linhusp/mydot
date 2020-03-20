@@ -15,7 +15,7 @@ DISABLE_AUTO_TITLE=true
 # tmux attach -t $SESSIONNAME
 
 # enable notification eOS
-builtin . /usr/share/io.elementary.terminal/enable-zsh-completion-notifications || builtin true
+# builtin . /usr/share/io.elementary.terminal/enable-zsh-completion-notifications || builtin true
 
 # Use 256 colors
 export TERM="xterm-256color"
