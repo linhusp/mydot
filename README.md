@@ -3,5 +3,5 @@
 `tmux`
 `zsh`
 
-![Screenshot](./screenshot.png) <!-- .element width="80%" -->
+![Screenshot](./screenshot.png) <!-- .element width="60%" -->
 
