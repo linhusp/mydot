@@ -501,7 +501,7 @@ hi! link Label GhostshellBlue
 " try, catch,...
 hi! link Exception GhostshellYellow
 " sizeof, '*', '+',...
-hi! link Operator GhostshellFg1
+hi! link Operator GhostshellBlue
 " other
 hi! link Keyword GhostshellBlue
 
@@ -598,7 +598,7 @@ hi! link GitGutterChangeDelete GhostshellAquaSign
 " }}}
 " NERDTree: {{{
 hi! link NERDTreeDir GhostshellAqua
-hi! link NERDTreeDirSlash GhostshellAqua
+hi! link NERDTreeDirSlash GhostshellGray
 
 hi! link NERDTreeOpenable GhostshellGray
 hi! link NERDTreeClosable GhostshellGray
@@ -607,8 +607,8 @@ hi! link NERDTreeFile GhostshellFg1
 hi! link NERDTreeExecFile GhostshellGreen
 
 hi! link NERDTreeUp GhostshellGray
-hi! link NERDTreeCWD GhostshellFg1
-hi! link NERDTreeHelp GhostshellFg1
+hi! link NERDTreeCWD GhostshellPurple
+hi! link NERDTreeHelp GhostshellOrange
 
 hi! link NERDTreeToggleOn GhostshellGreen
 hi! link NERDTreeToggleOff GhostshellRed
@@ -659,7 +659,7 @@ if exists('g:lightline')
     let s:p.visual.middle   = [[s:fg4, s:bg1]]
     let s:p.tabline.left    = [[s:fg4, s:bg2]]
     let s:p.tabline.tabsel  = [[s:bg0, s:fg4, 'bold']]
-    let s:p.tabline.middle  = [[s:bg0, s:bg0]]
+    let s:p.tabline.middle  = [[s:bg1, s:bg1]]
     let s:p.tabline.right   = [[s:bg0, s:orange]]
     let s:p.normal.error    = [[s:bg0, s:red]]
     let s:p.normal.warning  = [[s:bg2, s:yellow]]
@@ -754,12 +754,8 @@ hi! link cStructure GhostshellBlue
 " }}}
 " Python: {{{
 call s:HL('pythonBuiltinFunc', s:purple, s:none, s:italic)
-hi! link pythonBuiltinObj GhostshellYellow
+call s:HL('pythonSelf', s:yellow, s:none, s:italic)
 hi! link pythonDecorator GhostshellGray
-hi! link pythonBoolean GhostshellBlue
-hi! link pythonExceptions GhostshellYellow
-hi! link pythonClass GhostshellYellow
-hi! link pythonClassParameters GhostshellYellow
 
 " }}}
 " CSS: {{{
