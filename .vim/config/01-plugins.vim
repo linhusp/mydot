@@ -45,11 +45,10 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'godlygeek/tabular' " auto align
 " Plug 'dstein64/vim-startuptime'
-" Plug 'justinmk/vim-matchparenalways'
+Plug 'justinmk/vim-matchparenalways'
 
 " }}}
 " Languages Support {{{
-
 " python
 " Plug 'davidhalter/jedi-vim'
 Plug 'hynek/vim-python-pep8-indent'
