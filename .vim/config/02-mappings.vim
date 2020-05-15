@@ -6,14 +6,18 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Rebind <leader>
-let g:mapleader=','
+let g:mapleader=' '
 
-" Buffers controlling
-noremap <space>t :tabnew<CR>
-noremap <space>h :tabprevious<CR>
-noremap <space>l :tabnext<CR>
+" Select all text
+noremap <C-a> <C-\><C-N>ggVG<CR>
+
+" Tabs controlling
+noremap <leader>t :tabnew<CR>
+noremap <leader>h :tabprevious<CR>
+noremap <leader>l :tabnext<CR>
+
 " switch to the last used buffer
-noremap <space>j <C-^>
+noremap <space>o <C-^>
 
 " Disable search highlighting
 nnoremap <CR> :noh<CR>
@@ -31,7 +35,8 @@ vnoremap <space>P "+P
 noremap gV `[v`]
 
 " Resize window
-nnoremap <C-\> :vertical resize +5<CR>
+noremap <C-Down> :resize +5<CR>
+noremap <C-Up> :vertical resize +5<CR>
 
 " Saving
 nnoremap <space>w :w<CR>
