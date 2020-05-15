@@ -32,7 +32,7 @@ inoremap <silent><expr> <TAB>
     \ pumvisible() ? "\<C-n>" :
     \ <SID>check_back_space() ? "\<TAB>" :
     \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " <CR> for trigger completion with format on type
 inoremap <silent><expr> <CR>
     \ pumvisible() ? coc#_select_confirm() :
@@ -114,9 +114,10 @@ nnoremap <silent> <space>c :<C-u>CocList commands<CR>
 " ------------------------------------------------------------------------------
 let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMinimalUI=1
+let g:NERDTreeDirArrowExpandable='+'
+let g:NERDTreeDirArrowCollapsible='-'
 " toggle
-map <C-b> :NERDTreeToggle<CR>
-" map <C-b> :NERDTreeMirror<CR>
+map <silent> <C-b> :NERDTreeToggle<CR> :NERDTreeMirror<CR>
 " find
 map <C-f> :NERDTreeFind<CR>
 " ignore
@@ -124,7 +125,7 @@ let g:NERDTreeIgnore=['^node_modules$', '^.git$', '\.swp$', '\.bak$', '\.pyc$', 
 " show hidden
 let NERDTreeShowHidden=1
 " close vim if there's only NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd Bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " auto refresh
 function! NERDTreeRefresh()
     if &filetype == "nerdtree"
