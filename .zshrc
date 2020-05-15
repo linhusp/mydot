@@ -1,18 +1,4 @@
-# ZSH_TMUX_AUTOSTART=true
-# ZSH_DISABLE_COMPFIX=true
 DISABLE_AUTO_TITLE=true
-
-# create tmux session whenever reboot
-# SESSIONNAME="nl"
-# tmux has-session -t $SESSIONNAME &> /dev/null
-# if [ $? != 0 ]
-# then
-#     tmux new-session -s $SESSIONNAME -n script -d
-#     tmux new-window -d -t "đậu xanh"
-#     tmux new-window -d -t "thập cẩm"
-#     tmux new-window -d -t "trôi nước"
-# fi
-# tmux attach -t $SESSIONNAME
 
 # enable notification eOS
 # builtin . /usr/share/io.elementary.terminal/enable-zsh-completion-notifications || builtin true
@@ -86,6 +72,8 @@ POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='yellow'
 POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='clear'
 POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='red'
 
+# delimiter
+POWERLEVEL9K_SHORTEN_DELIMITER=".."
 # virtualenv
 POWERLEVEL9K_VIRTUALENV_BACKGROUND='clear'
 POWERLEVEL9K_VIRTUALENV_FOREGROUND='208'
@@ -105,16 +93,17 @@ export XMODIFIERS=@im=ibus
 # Some useful alias
 alias py='python3'
 alias co='code-insiders'
-alias pip='pip3'
 alias sai='sudo apt install'
 alias sau='sudo apt update'
 alias saug='sudo apt upgrade'
 alias sar='sudo apt remove'
 alias vim='nvim'
 alias svim='sudo nvim'
+alias python3 -m pip3='pip'
+alias hg='history | grep'
+alias vimdiff='nvim -d'
 
 # Set npm path
-# export PATH="$PATH:$HOME/.npm-packages/bin"
 NPM_PACKAGES="${HOME}/.npm-packages"
 export PATH="$PATH:$NPM_PACKAGES/bin"
 export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
@@ -124,10 +113,9 @@ export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOBIN
-# export GOPATH=$GOPATH:/home/linh/Desktop/go
-
-# QT scalling
-export QT_SCALE_FACTOR=1.4
 
 # Firefox smooth scrolling
 export MOZ_USE_XINPUT2="1"
+
+# Editor
+export EDITOR=nvim
