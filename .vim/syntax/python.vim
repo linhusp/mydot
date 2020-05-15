@@ -36,26 +36,29 @@ syn match pythonExtraOperator "\%(\%(class\s*\)\@<!<<\|<=>\|<=\|>=\|->\|\%(<\|\<
 syn match pythonExtraPseudoOperator "\%(&&=\|&=\|&&\|||=\||=\|||\|!\~\|!=\)"
 
 " Decorators
-syn match pythonDecorator "@" display nextgroup=pythonFunction skipwhite
+syn match pythonDecorator "@" display nextgroup=pythonDot skipwhite
 
 " Colons
 syn match pythonColon ":"
 
 " Class parameters
 syn match pythonClass "\%(\%(class\s\|@\)\s*\)\@<=\h\%(\w\|\.\)*" contained nextgroup=pythonClassVars
-syn region pythonClassVars start="(" end=")" contained contains=pythonClassParameters transparent keepend
-syn match pythonClassParameters "[^,]*" contained contains=pythonOperator,pythonExtraOperator,pythonBuiltinObj,pythonStatement,pythonNumber,pythonString,pythonBrackets skipwhite
+syn region pythonClassVars start="(" end=")" skip=+\(".*"\|'.*'\)+ contained contains=pythonClassParameters transparent keepend
+syn match pythonClassParameters "[^,]*" contained contains=pythonBoolean,pythonOperator,pythonExtraOperator,pythonBuiltinObj,pythonBuiltinFunc,pythonStatement,pythonNumber,pythonString,pythonBrackets skipwhite
 
 " Function parameters
 syn match pythonFunction "\%(\%(def\s\|@\)\s*\)\@<=\h\%(\w\|\.\)*" contained nextgroup=pythonFunctionVars
 syn match pythonDot '\.' display nextgroup=pythonFunctionCall
 syn match pythonFunctionCall '\(\.\)\@!\w*\s*\((\)\@='
 syn region pythonFunctionVars start="(" end=")" skip=+\(".*"\|'.*'\)+ contained contains=pythonFunctionParameters transparent keepend
-syn match pythonFunctionParameters "[^,]*" contained contains=pythonSelf,pythonOperator,pythonExtraOperator,pythonBuiltinObj,pythonBuiltinFunc,pythonStatement,pythonNumber,pythonString,pythonBrackets skipwhite
+syn match pythonFunctionParameters "[^,]*" contained contains=pythonSelf,pythonBoolean,pythonOperator,pythonExtraOperator,pythonBuiltinObj,pythonBuiltinFunc,pythonStatement,pythonNumber,pythonString,pythonBrackets skipwhite
 
 " Comment
 syn match pythonComment "#.*$" contains=pythonTodo,@Spell
 syn keyword pythonTodo FIXME NOTE NOTES TODO XXX contained
+
+" Boolean
+syn keyword pythonBoolean True False
 
 " String
 syn region pythonString matchgroup=pythonQuotes start=+[uU]\=\z(['"]\)+ end="\z1" skip="\\\\\|\\\z1" contains=pythonEscape,@Spell
@@ -148,7 +151,7 @@ if !exists("python_no_builtin_highlight")
     unlet s:builtin_funcs
 
     " builtin objects
-    let s:builtin_obj='NotImplemented|Ellipsis|complex|float|int|list|slice|bool|str|dict|frozenset|set|tuple|type|object|bytes|bytearray|classmethod|staticmethod|property|super|False|True|None|__doc__|__debug__|__file__|__name__|__package__|__loader__|__spec__|__path__|__cached__'
+    let s:builtin_obj='NotImplemented|Ellipsis|complex|float|int|list|slice|bool|str|dict|frozenset|set|tuple|type|object|bytes|bytearray|classmethod|staticmethod|property|super|None|__doc__|__debug__|__file__|__name__|__package__|__loader__|__spec__|__path__|__cached__'
     execute 'syn match pythonBuiltinObj ''\v\.@<!\zs<%(' . s:builtin_obj . ')>'''
     unlet s:builtin_obj
 endif
@@ -193,11 +196,11 @@ hi def link pythonStatement Statement
 hi def link pythonConditional Conditional
 hi def link pythonRepeat Repeat
 hi def link pythonOperator Operator
-hi def link pythonException Exception
 hi def link pythonInclude Include
 hi def link pythonAsync Statement
 hi def link pythonDecorator Decorators
 hi def link pythonComment Comment
+hi def link pythonBoolean StorageClass
 hi def link pythonTodo Todo
 hi def link pythonString String
 hi def link pythonFString String
@@ -209,7 +212,7 @@ hi def link pythonBrackets Delimiter
 hi def link pythonColon Delimiter
 
 " Classes, Functions
-hi def link pythonClass Type
+hi def link pythonClass StorageClass
 hi def link pythonFunction Function
 hi def link pythonFunctionCall Function
 
@@ -221,7 +224,7 @@ if !exists("python_no_builtin_highlight")
     hi def link pythonBuiltinObj StorageClass
 endif
 if !exists("python_no_exception_highlight")
-    hi def link pythonExceptions Structure
+    hi def link pythonException Exception
 endif
 if exists("python_space_error_highlight")
     hi def link pythonSpaceError Error
@@ -231,14 +234,14 @@ if !exists("python_no_doctest_highlight")
 endif
 
 if !exists("python_no_self_cls_highlight")
-    hi def link pythonSelf Identifier
+    hi def link pythonSelf StorageClass
 endif
 if !exists("python_no_operator_highlight")
     hi def link pythonExtraOperator Statement
     hi def link pythonExtraPseudoOperator Statement
 endif
 if !exists("python_no_parameter_highlight")
-    hi def link pythonClassParameters Constant
+    hi def link pythonClassParameters Type
     hi def link pythonFunctionParameters Type
 endif
 
