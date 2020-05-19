@@ -99,7 +99,7 @@ alias saug='sudo apt upgrade'
 alias sar='sudo apt remove'
 alias vim='nvim'
 alias svim='sudo nvim'
-alias python3 -m pip3='pip'
+alias pip='python3 -m pip3'
 alias hg='history | grep'
 alias vimdiff='nvim -d'
 
