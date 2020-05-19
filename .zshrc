@@ -108,12 +108,6 @@ NPM_PACKAGES="${HOME}/.npm-packages"
 export PATH="$PATH:$NPM_PACKAGES/bin"
 export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 
-# golang lib path
-export PATH=$PATH:/usr/local/go/bin
-export GOPATH=$HOME/go
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOBIN
-
 # Firefox smooth scrolling
 export MOZ_USE_XINPUT2="1"
 
