@@ -83,7 +83,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 
 # -------------------------------------------------------------------
 # Set python virtualenv's path
-export VIRTUALENVWRAPPER_PYTHON=$(which python3.6)
+export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 source /usr/local/bin/virtualenvwrapper.sh
 
 # Enable ibus
