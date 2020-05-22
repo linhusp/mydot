@@ -126,6 +126,9 @@ let g:NERDTreeIgnore=['^node_modules$', '^.git$', '\.swp$', '\.bak$', '\.pyc$', 
 let NERDTreeShowHidden=1
 " close vim if there's only NERDTree
 autocmd Bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" automatically open NERDTree when vim starts up on a opening dir
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 " auto refresh
 function! NERDTreeRefresh()
     if &filetype == "nerdtree"
@@ -289,5 +292,12 @@ let g:lightline.tabline={
     \ 'left': [['tabs']],
     \ 'right': [['gitstatus']]
     \ }
+
+" }}}
+" GitGutter {{{
+" ------------------------------------------------------------------------------
+nmap <leader>gp <Plug>(GitGutterPreviewHunk)
+nmap <leader>gs <Plug>(GitGutterStageHunk)
+nmap <leader>gu <Plug>(GitGutterUndoHunk)
 
 " }}}
