@@ -84,7 +84,10 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 # -------------------------------------------------------------------
 # Set python virtualenv's path
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
-source /usr/local/bin/virtualenvwrapper.sh
+source $HOME/.local/bin/virtualenvwrapper.sh
+
+# disable tensorflow debug info
+export TF_CPP_MIN_LOG_LEVEL="3"
 
 # Enable ibus
 export GTK_IM_MODULE=ibus
@@ -99,7 +102,7 @@ alias saug='sudo apt upgrade'
 alias sar='sudo apt remove'
 alias vim='nvim'
 alias svim='sudo nvim'
-alias pip='python3 -m pip3'
+alias pip='python3 -m pip'
 alias hg='history | grep'
 alias vimdiff='nvim -d'
 
