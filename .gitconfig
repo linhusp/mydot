@@ -1,0 +1,13 @@
+[user]
+	email = linh0ltv@gmail.com
+	name = linhusp
+[core]
+	editor = nvim
+[diff]
+	tool = vimdiff
+[alias]
+	logg = log --oneline --graph --decorate
+[mergetool]
+    prompt = true
+[mergetool "vimdiff"]
+    cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
