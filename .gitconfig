@@ -1,12 +1,12 @@
 [user]
-	email = linh0ltv@gmail.com
-	name = linhusp
+    email = linh0ltv@gmail.com
+    name = linhusp
 [core]
-	editor = nvim
+    editor = nvim
 [diff]
-	tool = vimdiff
+    tool = vimdiff
 [alias]
-	logg = log --oneline --graph --decorate
+    logg = log --oneline --graph --decorate
 [mergetool]
     prompt = true
 [mergetool "vimdiff"]
