@@ -94,7 +94,7 @@ export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 source $HOME/.local/bin/virtualenvwrapper.sh
 
 # disable tensorflow debug info
-export TF_CPP_MIN_LOG_LEVEL="3"
+# export TF_CPP_MIN_LOG_LEVEL="3"
 
 # Enable ibus
 export GTK_IM_MODULE=ibus
