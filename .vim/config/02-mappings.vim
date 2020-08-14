@@ -16,8 +16,8 @@ noremap <C-a> <C-\><C-N>ggVG<CR>
 
 " Tabs controlling
 noremap <leader>t :tabnew<CR>
-noremap <leader>h :tabprevious<CR>
-noremap <leader>l :tabnext<CR>
+noremap <leader>h gT
+noremap <leader>l gt
 
 " switch to the last used buffer
 noremap <space>o <C-^>
