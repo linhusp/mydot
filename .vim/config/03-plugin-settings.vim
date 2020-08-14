@@ -357,12 +357,3 @@ let g:indentLine_char='¦'
 let g:polyglot_disabled=['python']
 
 " }}}
-" semshi {{{
-" ------------------------------------------------------------------------------
-let g:semshi#mark_selected_nodes=0
-let g:semshi#error_sign=v:false
-let g:semshi#excluded_hl_groups=[
-    \ 'local', 'imported', 'free', 'attribute', 'unresolved', 'parameterUnused'
-    \ ]
-
-" }}}
