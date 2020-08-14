@@ -41,6 +41,12 @@ noremap gV `[v`]
 noremap <C-Down> :resize +5<CR>
 noremap <C-Up> :vertical resize +5<CR>
 
+" Swapping windows
+" vertically split to horizontally
+nmap <leader>sj <C-w>t<C-w>K
+" horizontally split to vertically
+nmap <leader>sl <C-w>t<C-w>H
+
 " Saving
 nnoremap <space>w :w<CR>
 " force save as sudo
