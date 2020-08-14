@@ -144,6 +144,30 @@ endfunction
 autocmd BufEnter * call NERDTreeRefresh()
 
 " }}}
+" nerdtree-git-plugin {{{
+" ------------------------------------------------------------------------------
+let g:NERDTreeGitStatusIndicatorMapCustom={
+    \ 'Modified': 'M',
+    \ 'Staged': 'S',
+    \ 'Untracked': 'U',
+    \ 'Renamed': 'Rn',
+    \ 'Unmerged': 'uM',
+    \ 'Deleted': 'D',
+    \ 'Dirty': 'd',
+    \ 'Ignored': 'I',
+    \ 'Clean': 'Cl',
+    \ 'Unknown': '?'
+    \ }
+" let g:NERDTreeGitStatusShowIgnored=1
+" let g:NERDTreeGitStatusConcealBrackets=1
+
+" }}}
+" CHADTree {{{
+" ------------------------------------------------------------------------------
+" noremap <leader>v :CHADopen<CR>
+" let g:chadtree_colours
+
+" }}}
 " NERDCommenter {{{
 " ------------------------------------------------------------------------------
 " add spaces after comment delimiters
