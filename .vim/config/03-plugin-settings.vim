@@ -162,12 +162,6 @@ let g:NERDTreeGitStatusIndicatorMapCustom={
 " let g:NERDTreeGitStatusConcealBrackets=1
 
 " }}}
-" CHADTree {{{
-" ------------------------------------------------------------------------------
-" noremap <leader>v :CHADopen<CR>
-" let g:chadtree_colours
-
-" }}}
 " NERDCommenter {{{
 " ------------------------------------------------------------------------------
 " add spaces after comment delimiters
