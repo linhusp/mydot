@@ -4,11 +4,11 @@
 [core]
     editor = nvim
 [diff]
-    tool = vimdiff
+    tool = nvim
 [alias]
     logg = log --oneline --graph --decorate
 [mergetool]
     prompt = true
-[mergetool "vimdiff"]
+[mergetool "nvim"]
     ; cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
     cmd = nvim -d $LOCAL $REMOTE -c '$wincmd w' -c 'wincmd J'
