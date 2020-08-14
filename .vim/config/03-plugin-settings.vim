@@ -233,63 +233,92 @@ let g:lightline_gitdiff#indicator_modified="~"
 let g:lightline_gitdiff#min_width="70"
 
 let g:lightline={
-    \ 'colorscheme': 'ghostshell',
+    \ 'colorscheme': 'ghostshell'
     \ }
-let g:lightline.component={
-    \ 'lineinfo': '%3l:%-2v%<'
+let g:lightline.active={
+    \ 'left': [['mode', 'paste'],
+    \          ['fugitive', 'currentfunction', 'filename', 'method']],
+    \ 'right': [['lineinfo'],
+    \           ['percent'],
+    \           ['fileformat', 'fileencoding', 'filetype']]
+    \ }
+let g:lightline.inactive={
+    \ 'left': [['filename']],
+    \ 'right': [['lineinfo']]
+    \ }
+let g:lightline.tabline={
+    \ 'left': [['tabs']],
+    \ 'right': [['coc_status']]
     \ }
 let g:lightline.component_function={
+    \ 'mode': 'LightlineMode',
+    \ 'filename': 'LightlineFilename',
     \ 'coc_status': 'coc#status',
     \ 'currentfunction': 'CocCurrentFunction',
-    \ 'filename': 'LightlineFilename',
+    \ 'fugitive': 'LightlineFugitive',
+    \ 'percent': 'LightlinePercent',
     \ 'fileformat': 'LightlineFileformat',
+    \ 'fileencoding': 'LightlineFileencoding',
     \ 'filetype': 'LightlineFiletype',
     \ 'blame': 'LightlineGitBlame',
-    \ 'readonly': 'LightlineReadonly',
-    \ 'mode': 'LightlineMode',
-    \ 'fileencoding': 'LightlineFileencoding'
     \ }
+let g:lightline.component={
+    \ 'lineinfo': '%3l:%-2v%<',
+    \ }
+
+function! LightlineModified()
+    return &ft =~# 'help\|nerdtree' ? '' :
+        \ &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! LightlineReadonly()
+    return &readonly ? 'RO' : ''
+endfunction
+
+let s:viewplugins='NERD_tree'
 
 function! LightlineFilename()
     let root=fnamemodify(get(b:, 'git_dir'), ':h')
     let path=expand('%:p')
+    let fname=expand('%:t')
+    return &buftype ==# 'terminal' ? ':terminal' :
+        \ fname =~# 'NERD_tree' ? 'NERDTree' :
+        \ (LightlineReadonly() !=# '' ? LightlineReadonly() . ' | ' : '') .
+        \ (path ==# '' ? '[No Name]' :
+        \  winwidth(0) < 80 ? fname :
+        \  path[:len(root) - 1] ==# root ? path[len(root) + 1:] :
+        \  expand('%:f')) .
+        \ (LightlineModified() !=# '' ? ' ' . LightlineModified() : '')
+endfunction
 
-    if path ==# ''
-        return '[No Name]'
-    endif
+function! LightlineFugitive()
+    return expand('%:f') =~# s:viewplugins ? '' :
+        \ &ft !~? 'vimfiler' && exists('*FugitiveHead') ? FugitiveHead() : ''
+endfunction
 
-    if winwidth(0) >= 80
-        if path[:len(root) - 1] ==# root
-            return path[len(root) + 1:]
-        endif
-        return expand('%:f')
-    else
-        return expand('%:t')
-    endif
+function! LightlinePercent()
+    return expand('%:t') =~# s:viewplugins ? '' :
+        \ (100 * line('.') / line('$')) . '%'
 endfunction
 
 function! LightlineFileformat()
-    return winwidth(0) >= 80 ? &fileformat : ''
-endfunction
-
-function! LightlineFiletype()
-    return winwidth(0) >= 80 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+    return winwidth(0) < 80 ? '' : &fileformat
 endfunction
 
 function! LightlineFileencoding()
-    return winwidth(0) >= 80 ? &fileencoding : ''
+    return winwidth(0) < 80 ? '' : (&fenc !=# '' ? &fenc : &enc)
+endfunction
+
+function! LightlineFiletype()
+    return winwidth(0) < 80 ? '' : (&ft !=# '' ? &ft : 'no ft')
 endfunction
 
 function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
 endfunction
 
-function! LightlineReadonly()
-    return &readonly && &filetype !~# '\v(help|nerdtree)' ? 'RO' : ''
-endfunction
-
 function! LightlineMode()
-    return &filetype =~# 'nerdtree' ? '' : lightline#mode()
+    return &ft =~# 'nerdtree' ? '' : lightline#mode()
 endfunction
 
 let g:lightline.mode_map={
@@ -306,22 +335,8 @@ let g:lightline.mode_map={
     \ 't': 'T',
     \ }
 
-let g:lightline.active={
-    \ 'left': [['mode', 'paste'],
-    \          ['currentfunction', 'filename', 'method', 'readonly'],
-    \          ['modified']],
-    \ 'right': [['lineinfo'],
-    \           ['percent'],
-    \           ['fileformat', 'fileencoding', 'filetype']]
-    \ }
-let g:lightline.inactive={
-    \ 'left': [['filename']],
-    \ 'right': [['lineinfo']]
-    \ }
-let g:lightline.tabline={
-    \ 'left': [['tabs']],
-    \ 'right': [['gitstatus']]
-    \ }
+let g:lightline.separator={'left': '', 'right': ''}
+let g:lightline.subseparator={'left': '|', 'right': '|'}
 
 " }}}
 " GitGutter {{{
@@ -329,5 +344,25 @@ let g:lightline.tabline={
 nmap <leader>gp <Plug>(GitGutterPreviewHunk)
 nmap <leader>gs <Plug>(GitGutterStageHunk)
 nmap <leader>gu <Plug>(GitGutterUndoHunk)
+
+" }}}
+" indentLine {{{
+" ------------------------------------------------------------------------------
+let g:indentLine_color_gui='#504945'
+let g:indentLine_char='¦'
+
+" }}}
+" vim-polyglot {{{
+" ------------------------------------------------------------------------------
+let g:polyglot_disabled=['python']
+
+" }}}
+" semshi {{{
+" ------------------------------------------------------------------------------
+let g:semshi#mark_selected_nodes=0
+let g:semshi#error_sign=v:false
+let g:semshi#excluded_hl_groups=[
+    \ 'local', 'imported', 'free', 'attribute', 'unresolved', 'parameterUnused'
+    \ ]
 
 " }}}
