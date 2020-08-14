@@ -20,7 +20,8 @@ let g:coc_global_extensions=[
     \ 'coc-python',
     \ 'coc-vimlsp',
     \ 'coc-highlight',
-    \ 'coc-emmet'
+    \ 'coc-emmet',
+    \ 'coc-sh',
     \ ]
 
 " jumping in snippets
@@ -108,6 +109,11 @@ nnoremap <silent> <space>c :<C-u>CocList commands<CR>
 
 " add status line support
 " set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" filetype map
+let g:coc_filetype_map={
+    \ 'htmldjango': 'html'
+    \ }
 
 " }}}
 " NERDTree {{{
