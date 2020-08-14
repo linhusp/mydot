@@ -8,6 +8,9 @@ vnoremap > >gv
 " Rebind <leader>
 let g:mapleader=' '
 
+" Quickly selecting & changing buffer
+nnoremap <space>b :ls<CR>:b<space>
+
 " Select all text
 noremap <C-a> <C-\><C-N>ggVG<CR>
 
