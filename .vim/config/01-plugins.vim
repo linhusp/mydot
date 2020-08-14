@@ -20,11 +20,11 @@ endif
 call plug#begin('~/.vim/plugged')
 " Theming/Syntax highlighting {{{
 Plug 'morhetz/gruvbox'
-Plug 'altercation/vim-colors-solarized'
 Plug 'rakr/vim-one'
 Plug 'itchyny/lightline.vim'
 Plug 'tomasr/molokai'
 Plug 'sheerun/vim-polyglot'
+Plug 'yggdroot/indentline' " display indent characters
 
 " }}}
 " Code completion {{{
@@ -32,9 +32,13 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " }}}
 " Files managing {{{
-Plug 'scrooloose/nerdtree' " better sidebar
+Plug 'preservim/nerdtree' " better sidebar
+Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
 Plug 'junegunn/fzf' " better ctrl-p
 Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-obsession' " session manager
+Plug 'dhruvasagar/vim-prosession' " better vim-obsession
 
 " }}}
 " Addition Features {{{
@@ -49,7 +53,6 @@ Plug 'justinmk/vim-matchparenalways'
 
 " }}}
 " Languages Support {{{
-" python
 " Plug 'davidhalter/jedi-vim'
 Plug 'hynek/vim-python-pep8-indent'
 
