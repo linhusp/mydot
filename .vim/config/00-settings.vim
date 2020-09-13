@@ -20,7 +20,7 @@ set list
 " Scrolling: {{{
 " ------------------------------------------------------------------------------
 set scrolloff=3
-set ttyfast " default in neovim
+" set ttyfast " default in neovim
 
 " }}}
 " Indentation: {{{
