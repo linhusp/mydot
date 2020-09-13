@@ -40,7 +40,7 @@ inoremap <silent><expr> <CR>
     \ "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
 
 function! s:check_back_space() abort
-    let col = col('.') - 1
+    let col=col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
@@ -178,8 +178,8 @@ let g:NERDCustomDelimiters={
     \ 'python': {'left': '#'}
     \ }
 " map 'C-/' to toggle
-vmap <C-_> <Plug>NERDCommenterToggle
-nmap <C-_> <Plug>NERDCommenterToggle
+vmap <silent> <C-_> <Plug>NERDCommenterToggle
+nmap <silent> <C-_> <Plug>NERDCommenterToggle
 
 " }}}
 "vim-tmux-navigator {{{
@@ -201,23 +201,6 @@ inoremap <silent> <A-\> <C-\><C-N>:TmuxNavigatePrevious<CR>
 " ------------------------------------------------------------------------------
 " toggle
 nnoremap <silent> <C-p> :FZF<CR>
-
-" }}}
-" vim-go {{{
-" ------------------------------------------------------------------------------
-" let g:go_bin_path=$HOME."/go/bin"
-" let g:go_auto_type_info=1
-" let g:go_auto_sameids=1
-
-" custom syntax highlighting
-let g:go_fold_enable = ['import']
-let g:go_highlight_extra_types=1
-let g:go_highlight_operators=1
-let g:go_highlight_functions=1
-let g:go_highlight_function_parameters=1
-let g:go_highlight_function_calls=1
-let g:go_highlight_types=1
-let g:go_highlight_format_strings=1
 
 " }}}
 " lightline {{{
@@ -316,17 +299,17 @@ function! LightlineMode()
 endfunction
 
 let g:lightline.mode_map={
-    \ 'n': 'N',
-    \ 'i': 'I',
-    \ 'R': 'R',
-    \ 'v': 'V',
-    \ 'V': 'VL',
-    \ "\<C-v>": 'VB',
-    \ 'c': 'C',
-    \ 's': 'S',
-    \ 'S': 'SL',
-    \ "\<C-s>": 'SB',
-    \ 't': 'T',
+    \ 'n': '[N]',
+    \ 'i': '[I]',
+    \ 'R': '[R]',
+    \ 'v': '[V]',
+    \ 'V': '[VL]',
+    \ "\<C-v>": '[VB]',
+    \ 'c': '[C]',
+    \ 's': '[S]',
+    \ 'S': '[SL]',
+    \ "\<C-s>": '[SB]',
+    \ 't': '[T]',
     \ }
 
 let g:lightline.separator={'left': '', 'right': ''}
@@ -342,12 +325,16 @@ nmap <leader>gu <Plug>(GitGutterUndoHunk)
 " }}}
 " indentLine {{{
 " ------------------------------------------------------------------------------
-let g:indentLine_color_gui='#504945'
 let g:indentLine_char='¦'
 
+" https://github.com/Yggdroot/indentLine/issues/303
+let g:indentLine_bufNameExclude=['_.*', 'NERD_tree.*']
+let g:indentLine_fileTypeExclude=['text']
+let g:indentLine_bufTypeExclude=['help', 'terminal']
 " }}}
-" vim-polyglot {{{
+" vim-smooth-scroll {{{
 " ------------------------------------------------------------------------------
-let g:polyglot_disabled=['python']
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 
 " }}}

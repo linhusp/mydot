@@ -12,7 +12,7 @@ set termguicolors
 " highlight CursorColumn cterm=none ctermbg=214 ctermfg=239
 
 " Colorscheme: ghostshell
-colorscheme ghostshell
+colorscheme carbon
 
 " Custom guicursor
 set guicursor=n-v-c:block
