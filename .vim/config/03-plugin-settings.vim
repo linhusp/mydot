@@ -262,7 +262,7 @@ function! LightlineFilename()
         \ fname =~# 'NERD_tree' ? 'NERDTree' :
         \ (LightlineReadonly() !=# '' ? LightlineReadonly() . ' | ' : '') .
         \ (path ==# '' ? '[No Name]' :
-        \  winwidth(0) < 80 ? fname :
+        \  winwidth(0) < 79 ? fname :
         \  path[:len(root) - 1] ==# root ? path[len(root) + 1:] :
         \  expand('%:f')) .
         \ (LightlineModified() !=# '' ? ' ' . LightlineModified() : '')
@@ -279,15 +279,15 @@ function! LightlinePercent()
 endfunction
 
 function! LightlineFileformat()
-    return winwidth(0) < 80 ? '' : &fileformat
+    return winwidth(0) < 79 ? '' : &fileformat
 endfunction
 
 function! LightlineFileencoding()
-    return winwidth(0) < 80 ? '' : (&fenc !=# '' ? &fenc : &enc)
+    return winwidth(0) < 79 ? '' : (&fenc !=# '' ? &fenc : &enc)
 endfunction
 
 function! LightlineFiletype()
-    return winwidth(0) < 80 ? '' : (&ft !=# '' ? &ft : 'no ft')
+    return winwidth(0) < 79 ? '' : (&ft !=# '' ? &ft : 'no ft')
 endfunction
 
 function! CocCurrentFunction()
