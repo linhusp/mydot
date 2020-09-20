@@ -18,8 +18,8 @@ endif
 " }}}
 call plug#begin('~/.vim/plugged')
 " Theming/Syntax highlighting {{{
+
 Plug 'morhetz/gruvbox'
-Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'itchyny/lightline.vim'
 if !executable('python')
     Plug 'sheerun/vim-polyglot'
@@ -28,32 +28,36 @@ Plug 'yggdroot/indentline' " display indent characters
 
 " }}}
 " Code completion {{{
+
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " }}}
 " Files managing {{{
+
 Plug 'preservim/nerdtree' " better sidebar
 Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'junegunn/fzf' " better ctrl-p
 " Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-obsession' " session manager
 Plug 'dhruvasagar/vim-prosession' " better vim-obsession
+Plug 'makerj/vim-pdf'
 
 " }}}
 " Addition Features {{{
+
 Plug 'scrooloose/nerdcommenter' " faster commenting
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'airblade/vim-gitgutter' " show changes since last commit
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
-Plug 'godlygeek/tabular' " auto align
-" Plug 'dstein64/vim-startuptime'
+" Plug 'godlygeek/tabular' " auto align
 Plug 'justinmk/vim-matchparenalways'
 " Plug 'iamcco/markdown-preview.nvim/', {'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-Plug 'terryma/vim-smooth-scroll' " as it says
+" Plug 'terryma/vim-smooth-scroll' " as it says
 
 " }}}
 " Languages Support {{{
+
 " Plug 'hynek/vim-python-pep8-indent' " cause sluggy on large files
 
 " }}}

@@ -14,15 +14,17 @@ let g:ghostshell_italicize_comments=0
 let g:coc_global_extensions=[
     \ 'coc-snippets',
     \ 'coc-pairs',
-    \ 'coc-json',
-    \ 'coc-html',
-    \ 'coc-css',
-    \ 'coc-python',
-    \ 'coc-vimlsp',
-    \ 'coc-highlight',
     \ 'coc-emmet',
-    \ 'coc-sh',
     \ ]
+" 'coc-highlight',
+" 'coc-tsserver'
+" 'coc-python'
+" 'coc-css'
+" 'coc-json'
+" 'coc-html'
+" 'coc-sh',
+" 'coc-vimlsp',
+" 'coc-pyright',
 
 " jumping in snippets
 let g:coc_snippet_next='<C-j>'
@@ -262,7 +264,7 @@ function! LightlineFilename()
         \ fname =~# 'NERD_tree' ? 'NERDTree' :
         \ (LightlineReadonly() !=# '' ? LightlineReadonly() . ' | ' : '') .
         \ (path ==# '' ? '[No Name]' :
-        \  winwidth(0) <= 80 ? fname :
+        \  winwidth(0) < 82 ? fname :
         \  path[:len(root) - 1] ==# root ? path[len(root) + 1:] :
         \  expand('%:f')) .
         \ (LightlineModified() !=# '' ? ' ' . LightlineModified() : '')
@@ -279,15 +281,15 @@ function! LightlinePercent()
 endfunction
 
 function! LightlineFileformat()
-    return winwidth(0) <= 80 ? '' : &fileformat
+    return winwidth(0) < 82 ? '' : &fileformat
 endfunction
 
 function! LightlineFileencoding()
-    return winwidth(0) <= 80 ? '' : (&fenc !=# '' ? &fenc : &enc)
+    return winwidth(0) < 82 ? '' : (&fenc !=# '' ? &fenc : &enc)
 endfunction
 
 function! LightlineFiletype()
-    return winwidth(0) <= 80 ? '' : (&ft !=# '' ? &ft : 'no ft')
+    return winwidth(0) < 82 ? '' : (&ft !=# '' ? &ft : 'no ft')
 endfunction
 
 function! CocCurrentFunction()
@@ -299,17 +301,17 @@ function! LightlineMode()
 endfunction
 
 let g:lightline.mode_map={
-    \ 'n': '[N]',
-    \ 'i': '[I]',
-    \ 'R': '[R]',
-    \ 'v': '[V]',
-    \ 'V': '[VL]',
-    \ "\<C-v>": '[VB]',
-    \ 'c': '[C]',
-    \ 's': '[S]',
-    \ 'S': '[SL]',
-    \ "\<C-s>": '[SB]',
-    \ 't': '[T]',
+    \ 'n': 'N',
+    \ 'i': 'I',
+    \ 'R': 'R',
+    \ 'v': 'V',
+    \ 'V': 'VL',
+    \ "\<C-v>": 'VB',
+    \ 'c': 'C',
+    \ 's': 'S',
+    \ 'S': 'SL',
+    \ "\<C-s>": 'SB',
+    \ 't': 'T',
     \ }
 
 let g:lightline.separator={'left': '', 'right': ''}
@@ -329,12 +331,14 @@ let g:indentLine_char='¦'
 
 " https://github.com/Yggdroot/indentLine/issues/303
 let g:indentLine_bufNameExclude=['_.*', 'NERD_tree.*']
-let g:indentLine_fileTypeExclude=['text']
+let g:indentLine_fileTypeExclude=['text', 'json']
 let g:indentLine_bufTypeExclude=['help', 'terminal']
 " }}}
 " vim-smooth-scroll {{{
 " ------------------------------------------------------------------------------
-noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+if exists('smooth_scroll')
+    noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+    noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+endif
 
 " }}}
