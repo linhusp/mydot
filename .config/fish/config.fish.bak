@@ -1,0 +1,39 @@
+function fish_user_key_bidings
+    for mode in insert default visual
+        bind -M $mode \ef forward-char
+    end
+end
+
+if status is-interactive
+    # vi-mode
+    fish_vi_key_bindings
+    fish_user_key_bidings
+
+    # disable fish_greeting
+    set fish_greeting
+
+    # abbr
+    abbr -ag pa 'sudo pacman'
+    abbr -ag vim 'nvim'
+    abbr -ag sv 'sudo nvim'
+    abbr -ag hg 'history | grep'
+    abbr -ag vd 'nvim -d'
+    abbr -ag vcf 'cd ~/.vim && nvim && cd -'
+
+    abbr -ag gc 'git clone'
+    abbr -ag ga 'git add'
+    abbr -ag gb 'git branch'
+    abbr -ag gcm 'git commit -m'
+    abbr -ag gco 'git checkout'
+    abbr -ag gd 'git diff'
+    abbr -ag gl 'git log'
+    abbr -ag gm 'git merge'
+    abbr -ag gr 'git remote'
+    abbr -ag gss 'git status'
+end
+
+if status is-login
+    if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
+        exec startx -- -keeptty
+    end
+end
