@@ -20,16 +20,40 @@ call plug#begin('~/.vim/plugged')
 " Theming/Syntax highlighting {{{
 
 Plug 'morhetz/gruvbox'
+Plug 'tomasiser/vim-code-dark'
+Plug 'crusoexia/vim-monokai'
+" Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'itchyny/lightline.vim'
+Plug 'yggdroot/indentline' " display indent characters
+" Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} " python highlighting
+" Plug 'Xuyuanp/scrollbar.nvim'
 if !executable('python')
     Plug 'sheerun/vim-polyglot'
 endif
-Plug 'yggdroot/indentline' " display indent characters
 
 " }}}
 " Code completion {{{
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'dag/vim-fish'
+
+" disable coc per specific type
+" let g:my_coc_file_types = ['js', 'vim', 'sh', 'py']
+
+" function! s:disable_coc_for_type()
+"     if index(g:my_coc_file_types, &filetype) == -1
+"         let b:coc_enabled=0
+"     endif
+" endfunction
+
+" augroup CocGroup
+"     autocmd!
+"     autocmd BufNew,BufEnter * call s:disable_coc_for_type()
+" augroup end
+
+" if !executable('go')
+"     Plug 'fatih/vim-go'
+" endif
 
 " }}}
 " Files managing {{{
@@ -40,7 +64,8 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-obsession' " session manager
 Plug 'dhruvasagar/vim-prosession' " better vim-obsession
-Plug 'makerj/vim-pdf'
+" Plug 'makerj/vim-pdf'
+Plug 'chrisbra/csv.vim'
 
 " }}}
 " Addition Features {{{
@@ -51,14 +76,17 @@ Plug 'airblade/vim-gitgutter' " show changes since last commit
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 " Plug 'godlygeek/tabular' " auto align
-Plug 'justinmk/vim-matchparenalways'
+" Plug 'justinmk/vim-matchparenalways', {'for': ['vim', 'python', 'sh', 'javascript']}
 " Plug 'iamcco/markdown-preview.nvim/', {'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 " Plug 'terryma/vim-smooth-scroll' " as it says
+Plug 'svban/YankAssassin.vim' " dont move the cursor after yaking
 
 " }}}
-" Languages Support {{{
+" Languages Specific {{{
 
-" Plug 'hynek/vim-python-pep8-indent' " cause sluggy on large files
+if executable('python')
+    Plug 'Vimjas/vim-python-pep8-indent' " cause sluggy on large files
+endif
 
 " }}}
 call plug#end()

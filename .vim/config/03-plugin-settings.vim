@@ -1,16 +1,16 @@
 " Theme Plugins {{{
-" ------------------------------------------------------------------------------
+" -------------
 " Gruvbox
 let g:gruvbox_contrast_dark='medium'
 let g:gruvbox_termcolors=256
 
 " Ghostshell
-let g:ghostshell_italic=1
-let g:ghostshell_italicize_comments=0
+" let g:ghostshell_italic=1
+" let g:ghostshell_italicize_comments=0
 
 " }}}
 " coc-nvim {{{
-" ------------------------------------------------------------------------------
+" --------
 let g:coc_global_extensions=[
     \ 'coc-snippets',
     \ 'coc-pairs',
@@ -26,19 +26,19 @@ let g:coc_global_extensions=[
 " 'coc-vimlsp',
 " 'coc-pyright',
 
+" python fstring autopairs
+
 " jumping in snippets
 let g:coc_snippet_next='<C-j>'
 let g:coc_snippet_prev='<C-k>'
 
 " <TAB> for trigger completion
-inoremap <silent><expr> <TAB>
-    \ pumvisible() ? "\<C-n>" :
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" :
     \ <SID>check_back_space() ? "\<TAB>" :
     \ coc#refresh()
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " <CR> for trigger completion with format on type
-inoremap <silent><expr> <CR>
-    \ pumvisible() ? coc#_select_confirm() :
+inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() :
     \ "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
 
 function! s:check_back_space() abort
@@ -72,6 +72,12 @@ function! s:show_documentation()
         call CocAction('doHover')
     endif
 endfunction
+
+" <C-j> and <C-k> to scroll float window
+inoremap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? "\<C-r>=coc#float#scroll(1)\<CR>" : "\<Right>"
+inoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? "\<C-r>=coc#float#scroll(0)\<CR>" : "\<Left>"
+nnoremap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-j>"
+nnoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-k>"
 
 " highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -119,7 +125,7 @@ let g:coc_filetype_map={
 
 " }}}
 " NERDTree {{{
-" ------------------------------------------------------------------------------
+" --------
 let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMinimalUI=1
 let g:NERDTreeDirArrowExpandable='+'
@@ -133,10 +139,17 @@ let g:NERDTreeIgnore=['^node_modules$', '^.git$', '\.swp$', '\.bak$', '\.pyc$', 
 " show hidden
 let NERDTreeShowHidden=1
 " close vim if there's only NERDTree
-autocmd Bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd Bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree())
+    \ | q
+    \ | endif
 " automatically open NERDTree when vim starts up on a opening dir
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in")
+    \ | exe 'NERDTree' argv()[0] 
+    \ | wincmd p
+    \ | ene
+    \ | exe 'cd '.argv()[0]
+    \ | endif
 " auto refresh
 function! NERDTreeRefresh()
     if &filetype == "nerdtree"
@@ -147,7 +160,7 @@ autocmd BufEnter * call NERDTreeRefresh()
 
 " }}}
 " nerdtree-git-plugin {{{
-" ------------------------------------------------------------------------------
+" -------------------
 let g:NERDTreeGitStatusIndicatorMapCustom={
     \ 'Modified': 'M',
     \ 'Staged': 'S',
@@ -165,7 +178,8 @@ let g:NERDTreeGitStatusIndicatorMapCustom={
 
 " }}}
 " NERDCommenter {{{
-" ------------------------------------------------------------------------------
+" -------------
+let g:NERDCreateDefaultMappings=0
 " add spaces after comment delimiters
 let g:NERDSpaceDelims=1 " same as g:NERDRemoveExtraSpaces=1
 " use compact syntax for pretified multi-line comments
@@ -177,7 +191,7 @@ let g:NERDDefaultAlign='left'
 " fix double space in python: https://github.com/preservim/nerdcommenter/issues/202
 let g:NERDCustomDelimiters={
     \ 'c': {'left': '//'},
-    \ 'python': {'left': '#'}
+    \ 'python': {'left': '#'},
     \ }
 " map 'C-/' to toggle
 vmap <silent> <C-_> <Plug>NERDCommenterToggle
@@ -185,7 +199,7 @@ nmap <silent> <C-_> <Plug>NERDCommenterToggle
 
 " }}}
 "vim-tmux-navigator {{{
-" ------------------------------------------------------------------------------
+" -----------------
 let g:tmux_navigator_no_mappings=1
 nnoremap <silent> <A-h> :TmuxNavigateLeft<CR>
 nnoremap <silent> <A-l> :TmuxNavigateRight<CR>
@@ -200,12 +214,30 @@ inoremap <silent> <A-\> <C-\><C-N>:TmuxNavigatePrevious<CR>
 
 " }}}
 " fzf {{{
-" ------------------------------------------------------------------------------
+" ---
 " toggle
 nnoremap <silent> <C-p> :FZF<CR>
 
 " }}}
+" vim-go {{{
+" ------
+" let g:go_bin_path=$HOME."/go/bin"
+" let g:go_auto_type_info=1
+" let g:go_auto_sameids=1
+
+" custom syntax highlighting
+" let g:go_fold_enable = ['import']
+" let g:go_highlight_extra_types=1
+" let g:go_highlight_operators=1
+" let g:go_highlight_functions=1
+" let g:go_highlight_function_parameters=1
+" let g:go_highlight_function_calls=1
+" let g:go_highlight_types=1
+" let g:go_highlight_format_strings=1
+
+" }}}
 " lightline {{{
+" ---------
 let g:lightline_gitdiff#indicator_added="+"
 let g:lightline_gitdiff#indicator_deleted="-"
 let g:lightline_gitdiff#indicator_modified="~"
@@ -246,8 +278,7 @@ let g:lightline.component={
     \ }
 
 function! LightlineModified()
-    return &ft =~# 'help\|nerdtree' ? '' :
-        \ &modified ? '+' : &modifiable ? '' : '-'
+    return &ft =~# 'help\|nerdtree' ? '' : &modified ? '+' : &modifiable ? '' : '-'
 endfunction
 
 function! LightlineReadonly()
@@ -263,10 +294,8 @@ function! LightlineFilename()
     return &buftype ==# 'terminal' ? ':terminal' :
         \ fname =~# 'NERD_tree' ? 'NERDTree' :
         \ (LightlineReadonly() !=# '' ? LightlineReadonly() . ' | ' : '') .
-        \ (path ==# '' ? '[No Name]' :
-        \  winwidth(0) < 82 ? fname :
-        \  path[:len(root) - 1] ==# root ? path[len(root) + 1:] :
-        \  expand('%:f')) .
+        \ (path ==# '' ? '[No Name]' : winwidth(0) < 82 ? fname :
+        \  path[:len(root) - 1] ==# root ? path[len(root) + 1:] : expand('%:f')) .
         \ (LightlineModified() !=# '' ? ' ' . LightlineModified() : '')
 endfunction
 
@@ -276,8 +305,7 @@ function! LightlineFugitive()
 endfunction
 
 function! LightlinePercent()
-    return expand('%:t') =~# s:viewplugins ? '' :
-        \ (100 * line('.') / line('$')) . '%'
+    return expand('%:t') =~# s:viewplugins ? '' : (100 * line('.') / line('$')) . '%'
 endfunction
 
 function! LightlineFileformat()
@@ -319,26 +347,67 @@ let g:lightline.subseparator={'left': '|', 'right': '|'}
 
 " }}}
 " GitGutter {{{
-" ------------------------------------------------------------------------------
+" ---------
 nmap <leader>gp <Plug>(GitGutterPreviewHunk)
 nmap <leader>gs <Plug>(GitGutterStageHunk)
 nmap <leader>gu <Plug>(GitGutterUndoHunk)
 
 " }}}
 " indentLine {{{
-" ------------------------------------------------------------------------------
+" ----------
+" let g:indentLine_color_gui='#504945'
 let g:indentLine_char='¦'
 
 " https://github.com/Yggdroot/indentLine/issues/303
 let g:indentLine_bufNameExclude=['_.*', 'NERD_tree.*']
 let g:indentLine_fileTypeExclude=['text', 'json']
 let g:indentLine_bufTypeExclude=['help', 'terminal']
+
+" }}}
+" semshi {{{
+" ------
+" let g:semshi#mark_selected_nodes=0
+" let g:semshi#error_sign=v:false
+" let g:semshi#excluded_hl_groups=[
+"     \ 'local', 'imported', 'free', 'attribute', 'unresolved', 'parameterUnused'
+"     \ ]
+
 " }}}
 " vim-smooth-scroll {{{
-" ------------------------------------------------------------------------------
+" -----------------
 if exists('smooth_scroll')
     noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
     noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 endif
 
+" }}}
+" scrollbar {{{
+" ---------
+" augroup scrollbar_config
+"     autocmd!
+"     autocmd BufEnter * silent! lua require('scrollbar').show()
+"     autocmd BufLeave * silent! lua require('scrollbar').clear()
+
+"     autocmd CursorMoved * silent! lua require('scrollbar').show()
+"     autocmd VimResized * silent! lua require('scrollbar').show()
+
+"     autocmd FocusGained * silent! lua require('scrollbar').show()
+"     autocmd FocusLost * silent! lua require('scrollbar').show()
+" augroup end
+
+" let g:scrollbar_shape={
+"     \ 'head': '█',
+"     \ 'body': '█',
+"     \ 'tail': '█',
+"     \ }
+
+" let g:scrollbar_right_offset=0
+
+" }}}
+" csv-vim {{{
+" -------
+let g:csv_nomap_cr=1
+let g:csv_nomap_bs=1
+let g:csv_nomap_space=1
+" let g:csv_nomap_b=1
 " }}}

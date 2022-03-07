@@ -14,6 +14,9 @@ nnoremap <space>b :ls<CR>:b<space>
 " Select all text
 noremap <C-a> <C-\><C-N>ggVG<CR>
 
+" Split line at the cursor position (as oppose to J)
+nnoremap E ylpr<CR>
+
 " Tabs controlling
 noremap <leader>t :tabnew<CR>
 noremap <leader>h gT
@@ -23,7 +26,7 @@ noremap <leader>l gt
 noremap <space>o <C-^>
 
 " Disable search highlighting
-nnoremap <CR> :noh<CR>
+nnoremap <BS> :noh<CR>
 
 " System clipboard copy/paste
 nnoremap <space>y "+y

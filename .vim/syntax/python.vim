@@ -226,17 +226,16 @@ syn match pythonFloat '\<\d\%([_0-9]*\d\)\=\.\d\=\%([_0-9]*\d\)\=\%([eE][+-]\=\d
 
 if s:IsEnabled('g:python_highlight_builtins')
     " builtin functions
-    syn match pythonInput 'input\ze\s*('
-    let s:builtin_funcs='__import__|abs|all|any|bin|callable|cmp|compile|delattr|dir|divmod|enumerate|eval|filter|exec|format|getattr|globals|locals|hasattr|hash|help|hex|id|intern|isinstance|issubclass|iter|len|map|max|min|range|next|oct|open|ord|pow|reduce|reload|repr|reversed|round|setattr|sorted|sum|vars|zip|print|chr|memoryview|ascii|__init__|breakpoint'
+    let s:builtin_funcs='__import__|abs|all|any|bin|callable|cmp|compile|delattr|dir|divmod|enumerate|eval|filter|exec|format|getattr|globals|locals|hasattr|hash|help|hex|id|input|intern|isinstance|issubclass|iter|len|map|max|min|range|next|oct|open|ord|pow|reduce|reload|repr|reversed|round|setattr|sorted|sum|vars|zip|print|chr|memoryview|ascii|__init__|breakpoint'
     let s:builtin_funcs='syn match pythonBuiltinFunc ''\v\.@<!\zs<%(' . s:builtin_funcs . ')>'
-    let s:builtin_funcs .= '\=@!'
+    let s:builtin_funcs .= '\=@!\ze\s*\('
     execute s:builtin_funcs . ''''
     unlet s:builtin_funcs
 
     " builtin objects
     syn keyword pythonBoolean True False
     syn keyword pythonNone None
-    let s:builtin_obj='NotImplemented|Ellipsis|complex|float|int|list|slice|bool|str|dict|frozenset|set|tuple|type|object|bytes|bytearray|classmethod|staticmethod|property|super|None|__doc__|__debug__|__file__|__name__|__package__|__loader__|__spec__|__path__|__cached__'
+    let s:builtin_obj='NotImplemented|Ellipsis|complex|float|int|list|slice|bool|str|dict|frozenset|set|tuple|type|object|bytes|bytearray|classmethod|staticmethod|property|overload|super|__doc__|__debug__|__file__|__name__|__package__|__loader__|__spec__|__path__|__cached__'
     execute 'syn match pythonBuiltinObj ''\v\.@<!\zs<%(' . s:builtin_obj . ')>'''
     unlet s:builtin_obj
 endif
@@ -289,7 +288,6 @@ hi def link pythonTodo Todo
 if s:IsEnabled('g:python_highlight_builtins')
     hi def link pythonBuiltinObj StorageClass
     hi def link pythonBuiltinFunc Function
-    hi def link pythonInput Function
     hi def link pythonBoolean Number
     hi def link pythonNone Number
 endif
