@@ -1,6 +1,6 @@
 # special
 abbr -ag pa 'sudo pacman'
-abbr -ag sv 'sudo nvim'
+abbr -ag sv 'sudo -Es nvim'
 abbr -ag sf 'exec fish'
 # git
 abbr -ag gc 'git clone'
